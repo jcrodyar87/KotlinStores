@@ -23,6 +23,7 @@
             />
 
         <TextView
+           android:id="@+id/tvName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/store_name"
