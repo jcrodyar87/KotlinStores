@@ -6,7 +6,7 @@ import android.widget.GridLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import com.jcry87.kotlinstores.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), OnClickListener {
+class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
 
     private lateinit var mBinding: ActivityMainBinding
     private lateinit var mAdapter: StoreAdapter
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
 
-        mBinding.fabAddStore.hide()
+        hideFab()
     }
 
     private fun setupRecyclerView() {
@@ -81,5 +81,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             StoreApplication.database.storeDao().deleteStore(storeEntity)
             mAdapter.delete(storeEntity)
         }.start()
+    }
+
+    // Main Aux
+    override fun hideFab(isVisible: Boolean) {
+        if(isVisible) mBinding.fabAddStore.show() else mBinding.fabAddStore.hide()
     }
 }
