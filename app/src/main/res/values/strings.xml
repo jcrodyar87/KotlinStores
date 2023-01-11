@@ -4,4 +4,11 @@
     <string name="store_name">Store name</string>
     <string name="add_store">Add store</string>
     <string name="save">Save</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_name">Store name</string>
+    <string name="helper_required">Field required</string>
+    <string name="hint_phone">Phone</string>
+    <string name="hint_website">Website url</string>
+    <string name="hint_photo_url">Photo url</string>
 </resources>

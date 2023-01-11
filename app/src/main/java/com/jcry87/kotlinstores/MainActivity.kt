@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-        mBinding.btnSave.setOnClickListener{
+        /*mBinding.btnSave.setOnClickListener{
             val store = StoreEntity(name = mBinding.etName.text.toString().trim())
 
             Thread{
@@ -25,8 +25,24 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             }.start()
 
             mAdapter.add(store)
+        }*/
+
+        mBinding.fabAddStore.setOnClickListener{
+            launchEditFragment()
         }
         setupRecyclerView()
+    }
+
+    private fun launchEditFragment() {
+        val fragment = EditStoreFragment()
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        fragmentTransaction.add(R.id.main_container, fragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
+
+        mBinding.fabAddStore.hide()
     }
 
     private fun setupRecyclerView() {
@@ -54,15 +70,15 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     override fun onFavoriteStore(storeEntity: StoreEntity) {
         storeEntity.isFavorite = !storeEntity.isFavorite
-        StoreApplication.database.storeDao().updateStore(storeEntity)
         Thread {
+            StoreApplication.database.storeDao().updateStore(storeEntity)
             mAdapter.update(storeEntity)
         }.start()
     }
 
     override fun onDeleteStore(storeEntity: StoreEntity) {
-        StoreApplication.database.storeDao().deleteStore(storeEntity)
         Thread{
+            StoreApplication.database.storeDao().deleteStore(storeEntity)
             mAdapter.delete(storeEntity)
         }.start()
     }
