@@ -1,5 +1,7 @@
 package com.jcry87.kotlinstores
 
 interface OnClickListener {
-    fun OnClick(store: Store)
+    fun onClick(storeEntity: StoreEntity)
+    fun onFavoriteStore(storeEntity: StoreEntity)
+    fun onDeleteStore(storeEntity: StoreEntity)
 }

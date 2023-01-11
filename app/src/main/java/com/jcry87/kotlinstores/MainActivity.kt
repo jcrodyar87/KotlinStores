@@ -17,12 +17,22 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
+        mBinding.btnSave.setOnClickListener{
+            val store = StoreEntity(name = mBinding.etName.text.toString().trim())
+
+            Thread{
+                StoreApplication.database.storeDao().addStore(store)
+            }.start()
+
+            mAdapter.add(store)
+        }
         setupRecyclerView()
     }
 
     private fun setupRecyclerView() {
         mAdapter = StoreAdapter(mutableListOf(), this)
         mGridLayout = GridLayoutManager(this,2)
+        getStores()
 
         mBinding.rvStore.apply{
             setHasFixedSize(true)
@@ -31,7 +41,29 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         }
     }
 
-    override fun OnClick(store: Store) {
+    private fun getStores(){
+        Thread {
+            val stores = StoreApplication.database.storeDao().getAllStores()
+            mAdapter.setStores(stores)
+        }.start()
+    }
 
+    override fun onClick(storeEntity: StoreEntity) {
+
+    }
+
+    override fun onFavoriteStore(storeEntity: StoreEntity) {
+        storeEntity.isFavorite = !storeEntity.isFavorite
+        StoreApplication.database.storeDao().updateStore(storeEntity)
+        Thread {
+            mAdapter.update(storeEntity)
+        }.start()
+    }
+
+    override fun onDeleteStore(storeEntity: StoreEntity) {
+        StoreApplication.database.storeDao().deleteStore(storeEntity)
+        Thread{
+            mAdapter.delete(storeEntity)
+        }.start()
     }
 }
