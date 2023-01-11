@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Stores</string>
     <string name="description_img_photo">store image</string>
-    <string name="store_name">store name</string>
+    <string name="store_name">Store name</string>
+    <string name="add_store">Add store</string>
+    <string name="save">Save</string>
 </resources>
