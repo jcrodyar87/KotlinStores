@@ -4,13 +4,25 @@ import com.jcry87.kotlinstores.StoreApplication
 import com.jcry87.kotlinstores.common.entities.StoreEntity
 
 class MainInteractor {
-    interface StoresCallback{
-        fun getStoresCallback(stores: MutableList<StoreEntity>)
-    }
-    fun getStoresCallback(callback: StoresCallback){
-        Thread {
+
+    fun getStores(callback: (MutableList<StoreEntity>) -> Unit){
+       Thread {
             val storesList = StoreApplication.database.storeDao().getAllStores()
-            callback.getStoresCallback(storesList)
+            callback(storesList)
+        }.start()
+    }
+
+    fun deleteStore(storeEntity: StoreEntity, callback: (StoreEntity) -> Unit){
+        Thread {
+            StoreApplication.database.storeDao().deleteStore(storeEntity)
+            callback(storeEntity)
+        }.start()
+    }
+
+    fun updateStore(storeEntity: StoreEntity, callback: (StoreEntity) -> Unit){
+        Thread {
+            StoreApplication.database.storeDao().updateStore(storeEntity)
+            callback(storeEntity)
         }.start()
     }
 }

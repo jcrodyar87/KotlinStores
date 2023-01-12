@@ -67,13 +67,6 @@ class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
         }
     }
 
-    /*private fun getStores(){
-        Thread {
-            val stores = StoreApplication.database.storeDao().getAllStores()
-            mAdapter.setStores(stores)
-        }.start()
-    }*/
-
     override fun onClick(storeId: Long) {
         val args = Bundle()
         args.putLong(getString(R.string.arg_id), storeId)
@@ -82,18 +75,11 @@ class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
     }
 
     override fun onFavoriteStore(storeEntity: StoreEntity) {
-        storeEntity.isFavorite = !storeEntity.isFavorite
-        Thread {
-            StoreApplication.database.storeDao().updateStore(storeEntity)
-            mAdapter.update(storeEntity)
-        }.start()
+        mMainViewModel.updateStore(storeEntity)
     }
 
     override fun onDeleteStore(storeEntity: StoreEntity) {
-        Thread{
-            StoreApplication.database.storeDao().deleteStore(storeEntity)
-            mAdapter.delete(storeEntity)
-        }.start()
+        mMainViewModel.deleteStore(storeEntity)
     }
 
     // Main Aux
