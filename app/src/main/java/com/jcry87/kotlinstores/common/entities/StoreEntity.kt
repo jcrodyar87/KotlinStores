@@ -1,4 +1,4 @@
-package com.jcry87.kotlinstores
+package com.jcry87.kotlinstores.common.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

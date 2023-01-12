@@ -1,10 +1,15 @@
-package com.jcry87.kotlinstores
+package com.jcry87.kotlinstores.mainModule
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.GridLayout
 import androidx.recyclerview.widget.GridLayoutManager
+import com.jcry87.kotlinstores.*
+import com.jcry87.kotlinstores.common.utils.MainAux
+import com.jcry87.kotlinstores.common.entities.StoreEntity
 import com.jcry87.kotlinstores.databinding.ActivityMainBinding
+import com.jcry87.kotlinstores.editModule.EditStoreFragment
+import com.jcry87.kotlinstores.mainModule.adapters.OnClickListener
+import com.jcry87.kotlinstores.mainModule.adapters.StoreAdapter
 
 class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
 

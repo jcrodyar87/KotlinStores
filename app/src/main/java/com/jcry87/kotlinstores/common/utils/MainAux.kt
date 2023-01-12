@@ -1,4 +1,6 @@
-package com.jcry87.kotlinstores
+package com.jcry87.kotlinstores.common.utils
+
+import com.jcry87.kotlinstores.common.entities.StoreEntity
 
 interface MainAux {
     fun hideFab(isVisible: Boolean = false)

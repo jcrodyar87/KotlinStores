@@ -1,6 +1,7 @@
-package com.jcry87.kotlinstores
+package com.jcry87.kotlinstores.common.database
 
 import androidx.room.*
+import com.jcry87.kotlinstores.common.entities.StoreEntity
 
 @Dao
 interface StoreDao {

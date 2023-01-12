@@ -1,4 +1,6 @@
-package com.jcry87.kotlinstores
+package com.jcry87.kotlinstores.mainModule.adapters
+
+import com.jcry87.kotlinstores.common.entities.StoreEntity
 
 interface OnClickListener {
     fun onClick(storeId: Long)

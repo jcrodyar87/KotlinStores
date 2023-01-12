@@ -1,4 +1,4 @@
-package com.jcry87.kotlinstores
+package com.jcry87.kotlinstores.mainModule.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.jcry87.kotlinstores.R
+import com.jcry87.kotlinstores.common.entities.StoreEntity
 import com.jcry87.kotlinstores.databinding.ItemStoreBinding
 
 class StoreAdapter (private var stores: MutableList<StoreEntity>, private var listener: OnClickListener) : RecyclerView.Adapter<StoreAdapter.ViewHolder>(){

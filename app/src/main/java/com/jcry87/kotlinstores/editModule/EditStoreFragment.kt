@@ -1,4 +1,4 @@
-package com.jcry87.kotlinstores
+package com.jcry87.kotlinstores.editModule
 
 import android.content.Context
 import android.os.Bundle
@@ -9,8 +9,11 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.google.android.material.snackbar.Snackbar
+import com.jcry87.kotlinstores.R
+import com.jcry87.kotlinstores.StoreApplication
+import com.jcry87.kotlinstores.common.entities.StoreEntity
 import com.jcry87.kotlinstores.databinding.FragmentEditStoreBinding
+import com.jcry87.kotlinstores.mainModule.MainActivity
 
 class EditStoreFragment : Fragment() {
 
