@@ -5,11 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jcry87.kotlinstores.StoreApplication
 import com.jcry87.kotlinstores.common.entities.StoreEntity
+import com.jcry87.kotlinstores.mainModule.model.MainInteractor
 
 class MainViewModel: ViewModel() {
     private var stores: MutableLiveData<List<StoreEntity>>
+    private var interactor: MainInteractor
 
     init {
+        interactor = MainInteractor()
         stores = MutableLiveData()
         loadStores()
     }
@@ -18,9 +21,11 @@ class MainViewModel: ViewModel() {
         return stores
     }
     private fun loadStores(){
-        Thread {
-            val storesList = StoreApplication.database.storeDao().getAllStores()
-            stores.value = storesList
-        }.start()
+        interactor.getStoresCallback(object : MainInteractor.StoresCallback{
+            override fun getStoresCallback(stores: MutableList<StoreEntity>) {
+                this@MainViewModel.stores.value = stores
+            }
+        })
+
     }
 }

@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-
         mBinding.fabAddStore.setOnClickListener{
             launchEditFragment()
         }
